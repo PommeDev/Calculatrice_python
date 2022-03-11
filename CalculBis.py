@@ -1,5 +1,4 @@
-from math import *
-from Resultat import *
+"""Fichier la pour tricher, et pouvoir executer la fonction Isole_parenthese"""
 
 
 class Calcul:
@@ -34,5 +33,3 @@ def est_un_chiffre(i: str):
             or i == "0":
         return True
     return False
-
-
