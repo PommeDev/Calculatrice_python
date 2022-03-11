@@ -29,3 +29,4 @@ class Calcul:
             return True
         return False
 
+
