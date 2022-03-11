@@ -1,4 +1,5 @@
 from CalculBis import *
+from Isole_parenthese import *
 
 
 class Result:
@@ -6,6 +7,10 @@ class Result:
     def __init__(self, calcul: str):
         self.calcul = Calcul(calcul)
         self.result = 0
+
+        for i in self.calcul.calcul:
+            if i == "(":
+                self.calcul = Calcul(isole_parenthese(self.calcul))
         self.calcul.add_in_list()
 
     def sum(self, a: int, b: int):
@@ -31,48 +36,59 @@ class Result:
     def Result(self):
         """Donne le résultat de la suite de calcul"""
         tour = 1
-        for i in self.calcul.operator:
-            if tour == 1:
-                if i == "+" and tour == 1:
-                    self.result += self.sum(self.calcul.chiffre[0], self.calcul.chiffre[1])
-                    self.calcul.chiffre.remove(self.calcul.chiffre[0])
-                    self.calcul.chiffre.remove(self.calcul.chiffre[0])
-                    tour += 1
+        if len(self.calcul.chiffre) > 2:
+            for i in self.calcul.operator:
+                if len(self.calcul.chiffre) > 2:
+                    if i == "+" and tour == 1:
+                        self.result += self.sum(self.calcul.chiffre[0], self.calcul.chiffre[1])
+                        self.calcul.chiffre.remove(self.calcul.chiffre[0])
+                        self.calcul.chiffre.remove(self.calcul.chiffre[0])
+                        tour += 1
 
-                elif i == "-" and tour == 1:
-                    self.result += self.soustraction(self.calcul.chiffre[0], self.calcul.chiffre[1])
-                    self.calcul.chiffre.remove(self.calcul.chiffre[0])
-                    self.calcul.chiffre.remove(self.calcul.chiffre[0])
+                    elif i == "-" and tour == 1:
+                        self.result += self.soustraction(self.calcul.chiffre[0], self.calcul.chiffre[1])
+                        self.calcul.chiffre.remove(self.calcul.chiffre[0])
+                        self.calcul.chiffre.remove(self.calcul.chiffre[0])
 
-                    tour += 1
-                elif i == "/" and tour == 1:
-                    self.result += self.division(self.calcul.chiffre[0], self.calcul.chiffre[1])
-                    self.calcul.chiffre.remove(self.calcul.chiffre[0])
-                    self.calcul.chiffre.remove(self.calcul.chiffre[0])
-                    tour += 1
+                        tour += 1
+                    elif i == "/" and tour == 1:
+                        self.result += self.division(self.calcul.chiffre[0], self.calcul.chiffre[1])
+                        self.calcul.chiffre.remove(self.calcul.chiffre[0])
+                        self.calcul.chiffre.remove(self.calcul.chiffre[0])
+                        tour += 1
 
-                elif i == "*" and tour == 1:
-                    self.result += self.product(self.calcul.chiffre[0], self.calcul.chiffre[1])
-                    self.calcul.chiffre.remove(self.calcul.chiffre[0])
-                    self.calcul.chiffre.remove(self.calcul.chiffre[0])
-                    tour += 1
+                    elif i == "*" and tour == 1:
+                        self.result += self.product(self.calcul.chiffre[0], self.calcul.chiffre[1])
+                        self.calcul.chiffre.remove(self.calcul.chiffre[0])
+                        self.calcul.chiffre.remove(self.calcul.chiffre[0])
+                        tour += 1
 
-            elif tour > 1:
-                if i == "+":
-                    self.result = self.sum(self.result, self.calcul.chiffre[0])
-                    self.calcul.chiffre.remove(self.calcul.chiffre[0])
+                elif tour > 1:
+                    if i == "+":
+                        self.result = self.sum(self.result, self.calcul.chiffre[0])
+                        self.calcul.chiffre.remove(self.calcul.chiffre[0])
 
-                elif i == "-":
-                    self.result = self.soustraction(self.result, self.calcul.chiffre[0])
-                    self.calcul.chiffre.remove(self.calcul.chiffre[0])
+                    elif i == "-":
+                        self.result = self.soustraction(self.result, self.calcul.chiffre[0])
+                        self.calcul.chiffre.remove(self.calcul.chiffre[0])
 
-                elif i == "*":
-                    self.result = self.product(self.result, self.calcul.chiffre[0])
-                    self.calcul.chiffre.remove(self.calcul.chiffre[0])
+                    elif i == "*":
+                        self.result = self.product(self.result, self.calcul.chiffre[0])
+                        self.calcul.chiffre.remove(self.calcul.chiffre[0])
 
-                elif i == "/":
-                    self.result = self.division(self.result, self.calcul.chiffre[0])
-                    self.calcul.chiffre.remove(self.calcul.chiffre[0])
+                    elif i == "/":
+                        self.result = self.division(self.result, self.calcul.chiffre[0])
+                        self.calcul.chiffre.remove(self.calcul.chiffre[0])
+        else:
+            x = self.calcul.operator[0]
+            if x == "+":
+                self.result += self.sum(self.calcul.chiffre[0], self.calcul.chiffre[1])
+            elif x == "-":
+                self.result += self.soustraction(self.calcul.chiffre[0], self.calcul.chiffre[1])
+            elif x == "/":
+                self.result += self.division(self.calcul.chiffre[0], self.calcul.chiffre[1])
+            elif x == "*":
+                self.result += self.product(self.calcul.chiffre[0], self.calcul.chiffre[1])
 
     def affichage(self):
         self.Result()

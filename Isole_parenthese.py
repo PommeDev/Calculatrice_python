@@ -1,5 +1,5 @@
-from Calcul import *
-from Resultat import *
+from CalculBis import *
+from ResultatBis import *
 
 
 def isole_parenthese(pO: Calcul):
@@ -14,10 +14,15 @@ def isole_parenthese(pO: Calcul):
                 a.entre_parentheses.append(a.calcul[z])
                 z += 1
                 Indice_fin = z
-    a.calcul = a.calcul[0:Indice_debut] + a.calcul[Indice_fin + 1: len(a.calcul) - 1]
-    txt = ""
+    a.calcul = a.calcul[0:Indice_debut] + a.calcul[Indice_fin + 1: len(a.calcul)]
+    txt, txt2 = "", ""
     for c in a.entre_parentheses:
         txt += str(c)
-    Pr = Result(txt)
+    Pr = ResultBis(txt)
     Pr.Result()
-    return Pr.result
+    for Membre_c in range(len(a.calcul)):
+        txt2 += a.calcul[Membre_c]
+        if Membre_c == Indice_debut-1:
+            txt2 += str(Pr.result)
+    return txt2
+
