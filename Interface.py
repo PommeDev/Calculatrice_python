@@ -4,6 +4,7 @@ from Resultat import *
 
 # from Command_user import *
 
+
 def add1():
     global txt
     txt += "1"
@@ -69,6 +70,14 @@ def addfois():
     txt += "*"
 
 
+def parentheseGauche():
+    global txt
+    txt += "("
+
+def parentheseDroite():
+    global txt
+    txt += ")"
+
 
 def getEntry():
     """Affiche le contenu du champ entree"""
@@ -83,6 +92,7 @@ def Equal():
 
 screen = Tk("Calculatrice")
 screen.geometry("200x600")
+screen['bg'] = 'grey'
 label = Label(screen, text="Calculatrice")
 
 label.pack()
@@ -116,8 +126,10 @@ butonPlus = Button(screen, text="+", command=addplus)
 butonMoins = Button(screen, text="-", command=addmoins)
 butonFois = Button(screen, text="x", command=addfois)
 butonEqual = Button(screen, text="=", command=Equal)
+buttonPG = Button(screen, text="(", command=parentheseGauche)
+buttonPD = Button(screen, text=")", command=parentheseDroite)
 
-ListeButton = [buttonQuitt, butonPrint, buton0, buton1, buton2, buton3, buton4, buton5, buton6, buton7, buton8, buton9, butonPlus, butonMoins, butonFois, butonEqual]
+ListeButton = [buttonQuitt, butonPrint, buton0, buton1, buton2, buton3, buton4, buton5, buton6, buton7, buton8, buton9, butonPlus, butonMoins, butonFois, buttonPG, buttonPD, butonEqual]
 
 for Boutton in ListeButton:
     Boutton.pack()
