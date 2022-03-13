@@ -1,5 +1,4 @@
-from Resultat import *
-
+from ResultatDecimal import *
 
 class Calcul_Decimal:
     """Class du calcul que pour un calcul sur des nombres"""

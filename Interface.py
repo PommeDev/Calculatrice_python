@@ -144,6 +144,19 @@ def Clear():
     aff.set(txt)
 
 
+def addVirgule():
+    global txt
+    txt += ","
+    global aff
+    aff.set(txt)
+
+
+def addDivide():
+    global txt
+    txt += "/"
+    global aff
+    aff.set(txt)
+
 def del_last_elem():
     """Cette fonction supprime le dernier élement de txt"""
     global txt
@@ -189,6 +202,8 @@ butonFois = Button(screen, text="x", command=addfois)
 butonEqual = Button(screen, text="=", command=Equal, background='yellow')
 buttonPG = Button(screen, text="(", command=parentheseGauche)
 buttonPD = Button(screen, text=")", command=parentheseDroite)
+buttonVirgule = Button(screen, text=",", command=addVirgule)
+buttonDivide = Button(screen, text="/", command=addDivide)
 
 buttonDel = Button(screen, text="<-", command=del_last_elem)
 
@@ -211,8 +226,8 @@ buton4.grid(row=4, column=0, ipadx=20, padx=0, ipady=10, sticky=W+N+E)
 buton3.grid(row=5, column=2, ipadx=20, padx=0, ipady=10, sticky=W+N+E)
 buton2.grid(row=5, column=1, ipadx=20, padx=0, ipady=10, sticky=W+N+E)
 buton1.grid(row=5, column=0, ipadx=20, padx=0, ipady=10, sticky=W+N+E)
-butonEqual.grid(row=7, column=2, ipadx=39, padx=0, ipady=5, sticky=W+N+E, columnspan=2, rowspan=1)
-buttonDel.grid(row=6, column=2, ipadx=39, padx=0, ipady=10, sticky=W+N+E, columnspan=2, rowspan=1)
+butonEqual.grid(row=7, column=3, ipadx=20, padx=0, ipady=5, sticky=W+N+E, columnspan=1, rowspan=1)
+buttonDel.grid(row=6, column=2, ipadx=20, padx=0, ipady=10, sticky=W+N+E, columnspan=1, rowspan=1)
 buton0.grid(row=6, column=1, ipadx=20, padx=0, ipady=10, sticky=W+N+E, columnspan=1)
 butonClear.grid(row=6, column=0, ipadx=20, padx=0, ipady=10, sticky=W+N+E)
 
@@ -223,6 +238,8 @@ butonMoins.grid(row=4, column=3, ipadx=20, padx=0, ipady=10, sticky=W+N+E)
 butonFois.grid(row=5, column=3, ipadx=19, padx=0, ipady=10, sticky=W+N+E)
 buttonPD.grid(row=7, column=1, ipadx=20, padx=0, ipady=5, sticky=W+N+E)
 buttonPG.grid(row=7, column=0, ipadx=20, padx=0, ipady=5, sticky=W+N+E)
+buttonVirgule.grid(row=6, column=3, ipadx=20, padx=0, ipady=10, sticky=W+N+E, columnspan=1, rowspan=1)
+buttonDivide.grid(row=7, column=2, ipadx=20, padx=0, ipady=5, sticky=W+N+E, columnspan=1, rowspan=1)
 
 
 screen.mainloop()

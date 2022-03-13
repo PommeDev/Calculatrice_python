@@ -1,4 +1,4 @@
-from Resultat import *
+from ResultatDecimal import *
 
 
 class Calcul_Decimal:
