@@ -1,6 +1,6 @@
 
 from tkinter import *
-from Resultat import *
+from ResultatDecimal import *
 
 
 """--I/ Les fonction utilisées par les bouton--"""
@@ -144,6 +144,18 @@ def Clear():
     aff.set(txt)
 
 
+def del_last_elem():
+    """Cette fonction supprime le dernier élement de txt"""
+    global txt
+    global aff
+    txtBis = ""
+    if txt != "":
+        for i in range(len(txt)-1):
+            txtBis += txt[i]
+        txt = txtBis
+    aff.set(txt)
+
+
 """--II/ Création de la fenetre--"""
 
 screen = Tk()
@@ -178,6 +190,8 @@ butonEqual = Button(screen, text="=", command=Equal, background='yellow')
 buttonPG = Button(screen, text="(", command=parentheseGauche)
 buttonPD = Button(screen, text=")", command=parentheseDroite)
 
+buttonDel = Button(screen, text="<-", command=del_last_elem)
+
 
 aff = StringVar()
 affichage = Label(screen, textvariable=aff, width=20, justify='left')
@@ -197,9 +211,11 @@ buton4.grid(row=4, column=0, ipadx=20, padx=0, ipady=10, sticky=W+N+E)
 buton3.grid(row=5, column=2, ipadx=20, padx=0, ipady=10, sticky=W+N+E)
 buton2.grid(row=5, column=1, ipadx=20, padx=0, ipady=10, sticky=W+N+E)
 buton1.grid(row=5, column=0, ipadx=20, padx=0, ipady=10, sticky=W+N+E)
-butonEqual.grid(row=6, column=2, ipadx=39, padx=0, ipady=28, sticky=W+N+E, columnspan=2, rowspan=2)
+butonEqual.grid(row=7, column=2, ipadx=39, padx=0, ipady=5, sticky=W+N+E, columnspan=2, rowspan=1)
+buttonDel.grid(row=6, column=2, ipadx=39, padx=0, ipady=10, sticky=W+N+E, columnspan=2, rowspan=1)
 buton0.grid(row=6, column=1, ipadx=20, padx=0, ipady=10, sticky=W+N+E, columnspan=1)
 butonClear.grid(row=6, column=0, ipadx=20, padx=0, ipady=10, sticky=W+N+E)
+
 
 """---B) Clavier des Opérateurs---"""
 butonPlus.grid(row=3, column=3, ipadx=20, padx=0, ipady=10, sticky=W+N+E)
