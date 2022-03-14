@@ -133,7 +133,7 @@ def Equal():
     global aff
     b.Result()
     txt = str(b.result)
-    aff.set(txt)
+    aff.set(str(b.calcul.calcul) + " = " + txt)
 
 
 def Clear():
@@ -175,8 +175,9 @@ def del_last_elem():
 screen = Tk()
 screen.title("Calculatrice")
 screen['bg'] = 'grey'
-screen.geometry("231x281")
+screen.geometry("235x281")
 screen.iconbitmap('calculatrice.ico')
+screen.resizable(False, False)
 label = Label(screen, text="Calculatrice, by Pomme", background="green")
 label.grid(row=0, column=0, columnspan=4)
 
@@ -230,7 +231,7 @@ buton1.grid(row=5, column=0, ipadx=20, padx=0, ipady=10, sticky=W+N+E)
 butonEqual.grid(row=7, column=3, ipadx=20, padx=0, ipady=5, sticky=W+N+E, columnspan=1, rowspan=1)
 buttonDel.grid(row=6, column=2, ipadx=20, padx=0, ipady=10, sticky=W+N+E, columnspan=1, rowspan=1)
 buton0.grid(row=6, column=1, ipadx=20, padx=0, ipady=10, sticky=W+N+E, columnspan=1)
-butonClear.grid(row=6, column=0, ipadx=20, padx=0, ipady=10, sticky=W+N+E)
+butonClear.grid(row=7, column=2, ipadx=20, padx=0, ipady=5, sticky=W+N+E)
 
 
 """---B) Clavier des Opérateurs---"""
@@ -239,9 +240,176 @@ butonMoins.grid(row=4, column=3, ipadx=20, padx=0, ipady=10, sticky=W+N+E)
 butonFois.grid(row=5, column=3, ipadx=19, padx=0, ipady=10, sticky=W+N+E)
 buttonPD.grid(row=7, column=1, ipadx=20, padx=0, ipady=5, sticky=W+N+E)
 buttonPG.grid(row=7, column=0, ipadx=20, padx=0, ipady=5, sticky=W+N+E)
-buttonVirgule.grid(row=6, column=3, ipadx=20, padx=0, ipady=10, sticky=W+N+E, columnspan=1, rowspan=1)
-buttonDivide.grid(row=7, column=2, ipadx=20, padx=0, ipady=5, sticky=W+N+E, columnspan=1, rowspan=1)
+buttonVirgule.grid(row=6, column=0, ipadx=20, padx=0, ipady=10, sticky=W+N+E, columnspan=1, rowspan=1)
+buttonDivide.grid(row=6, column=3, ipadx=20, padx=0, ipady=10, sticky=W+N+E, columnspan=1, rowspan=1)
 
+
+"""--V/ Pouvoir utilisé les touche du clavier pour taper le calcul--"""
+
+"""---A) definition des fonctions"""
+
+
+def clavier1(event):
+    """Ajoute 1 a la variable txt quand la touche "1" est pressé"""
+    global txt
+    txt += "1"
+    global aff
+    aff.set(txt)
+
+
+def clavier2(event):
+    """Ajoute 2 a la variable txt quand la touche "2" est pressé"""
+    global txt
+    txt += "2"
+    global aff
+    aff.set(txt)
+
+
+def clavier3(event):
+    """Ajoute 3 a la variable txt quand la touche "3" est pressé"""
+    global txt
+    txt += "3"
+    global aff
+    aff.set(txt)
+
+
+def clavier4(event):
+    """Ajoute 4 a la variable txt quand la touche "4" est pressé"""
+    global txt
+    txt += "4"
+    global aff
+    aff.set(txt)
+
+
+def clavier5(event):
+    """Ajoute 5 a la variable txt quand la touche "5" est pressé"""
+    global txt
+    txt += "5"
+    global aff
+    aff.set(txt)
+
+
+def clavier6(event):
+    """Ajoute 6 a la variable txt quand la touche "6" est pressé"""
+    global txt
+    txt += "6"
+    global aff
+    aff.set(txt)
+
+
+def clavier7(event):
+    """Ajoute 7 a la variable txt quand la touche "7" est pressé"""
+    global txt
+    txt += "7"
+    global aff
+    aff.set(txt)
+
+
+def clavier8(event):
+    """Ajoute 8 a la variable txt quand la touche "8" est pressé"""
+    global txt
+    txt += "8"
+    global aff
+    aff.set(txt)
+
+
+def clavier9(event):
+    """Ajoute 9 a la variable txt quand la touche "9" est pressé"""
+    global txt
+    txt += "9"
+    global aff
+    aff.set(txt)
+
+
+def clavier0(event):
+    """Ajoute 0 a la variable txt quand la touche "0" est pressé"""
+    global txt
+    txt += "0"
+    global aff
+    aff.set(txt)
+
+
+def clavierPlus(event):
+    """Ajoute + a la variable txt quand la touche "+" est pressé"""
+    global txt
+    txt += "+"
+    global aff
+    aff.set(txt)
+
+
+def clavierMoins(event):
+    """Ajoute - a la variable txt quand la touche "-" est pressé"""
+    global txt
+    txt += "-"
+    global aff
+    aff.set(txt)
+
+
+def clavierFois(event):
+    """Ajoute * a la variable txt quand la touche "*" est pressé"""
+    global txt
+    txt += "*"
+    global aff
+    aff.set(txt)
+
+
+def clavierDivide(event):
+    """Ajoute / a la variable txt quand la touche "/" est pressé"""
+    global txt
+    txt += "/"
+    global aff
+    aff.set(txt)
+
+
+def clavierVirgule(event):
+    """Ajoute . a la variable txt quand la touche "." est pressé"""
+    global txt
+    txt += "."
+    global aff
+    aff.set(txt)
+
+
+def clavier_del_last_elem(elem):
+    """Cette fonction supprime le dernier élement de txt quand la touche "" est pressé """
+    global txt
+    global aff
+    txtBis = ""
+    if txt != "":
+        for i in range(len(txt)-1):
+            txtBis += txt[i]
+        txt = txtBis
+    aff.set(txt)
+
+
+def clavierEqual(event):
+    """Calcul le résultat et remplace txt par ce résultat, l'affiche aussi quand la touche entrée est préssée"""
+    global txt
+    b = Result(txt)
+    global aff
+    b.Result()
+    txt = str(b.result)
+    aff.set(str(b.calcul.calcul) + " = " + txt)
+
+
+"""---B) Definition des touches"""
+
+screen.bind("0", clavier0)
+screen.bind("1", clavier1)
+screen.bind("2", clavier2)
+screen.bind("3", clavier3)
+screen.bind("4", clavier4)
+screen.bind("5", clavier5)
+screen.bind("6", clavier6)
+screen.bind("7", clavier7)
+screen.bind("8", clavier8)
+screen.bind("9", clavier9)
+screen.bind("+", clavierPlus)
+screen.bind("-", clavierMoins)
+screen.bind("*", clavierFois)
+screen.bind("/", clavierDivide)
+screen.bind(".", clavierVirgule)
+screen.bind("<Return>", clavierEqual)
+screen.bind("<BackSpace>", clavier_del_last_elem)
 
 screen.mainloop()
 
