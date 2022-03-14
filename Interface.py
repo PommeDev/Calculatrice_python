@@ -146,7 +146,7 @@ def Clear():
 
 def addVirgule():
     global txt
-    txt += ","
+    txt += "."
     global aff
     aff.set(txt)
 
@@ -156,6 +156,7 @@ def addDivide():
     txt += "/"
     global aff
     aff.set(txt)
+
 
 def del_last_elem():
     """Cette fonction supprime le dernier élement de txt"""

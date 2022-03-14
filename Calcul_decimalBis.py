@@ -21,11 +21,10 @@ class Calcul_Decimal:
         """Ajoute les nombres et les opérateurs dans leurs listes associées"""
         nb, coeff, taille, x, est_decimal, dec = 0, 1, [], 0, 0, 0
         for w in self.calcul:
-            if (w == "1" or w == "2" or w == "3" or w == "4" or w == "5" or w == "6" or w == "7" or w == "8" or w == "9" \
-                    or w == "0") and est_decimal == 0:
+            if (w == "1" or w == "2" or w == "3" or w == "4" or w == "5" or w == "6" or w == "7" or w == "8" or w == "9" or w == "0") and est_decimal == 0:
                 x += 1
 
-            elif w == ",":
+            elif w == "," or w == ".":
                 est_decimal = 1
 
             elif est_decimal == 1 and w == "1" or w == "2" or w == "3" or w == "4" or w == "5" or w == "6" or w == "7" or w == "8" or w == "9" \
@@ -50,7 +49,7 @@ class Calcul_Decimal:
                 nb += int(i) * coeff
                 taille[x][0] -= 1
 
-            elif i == ",":
+            elif i == "," or i == ".":
                 est_decimal = 1
                 z = 0
 
@@ -68,7 +67,6 @@ class Calcul_Decimal:
                 est_decimal = 0
 
         self.chiffre.append(nb)
-
 
 
 def est_un_chiffre(i: str):

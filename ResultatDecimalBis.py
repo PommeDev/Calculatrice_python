@@ -10,8 +10,8 @@ class Result:
 
         for i in self.calcul.calcul:
             if i == "(":
-                self.calcul = Calcul(isole_parenthese(self.calcul))
-        self.calcul.add_in_list()
+                self.calcul = Calcul_Decimal(isole_parenthese(self.calcul))
+        self.calcul.add_in_list_decimal()
 
     def sum(self, a: int, b: int):
         """Effectue une somme sur 2 nombres"""
