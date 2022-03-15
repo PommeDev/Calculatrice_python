@@ -126,6 +126,22 @@ def parentheseDroite():
     aff.set(txt)
 
 
+def addpuiss():
+    """Ajoute ^ a la variable txt"""
+    global txt
+    txt += "^"
+    global aff
+    aff.set(txt)
+
+
+def addRacine():
+    """Ajoute √ a la variable txt"""
+    global txt
+    txt += "√"
+    global aff
+    aff.set(txt)
+
+
 def Equal():
     """Calcul le résultat et remplace txt par ce résultat, l'affiche aussi"""
     global txt
@@ -175,10 +191,10 @@ def del_last_elem():
 screen = Tk()
 screen.title("Calculatrice")
 screen['bg'] = 'grey'
-screen.geometry("235x281")
+screen.geometry("292x281")
 screen.iconbitmap('calculatrice.ico')
 screen.resizable(False, False)
-label = Label(screen, text="Calculatrice, by Pomme", background="green")
+label = Label(screen, text="-- Calculatrice, by Pomme --", background="green")
 label.grid(row=0, column=0, columnspan=4)
 
 
@@ -208,17 +224,19 @@ buttonVirgule = Button(screen, text=",", command=addVirgule)
 buttonDivide = Button(screen, text="/", command=addDivide)
 
 buttonDel = Button(screen, text="<-", command=del_last_elem)
+buttonPuiss = Button(screen, text="^", command=addpuiss)
+buttonRacine = Button(screen, text="√", command=addRacine)
 
 
 aff = StringVar()
-affichage = Label(screen, textvariable=aff, width=20, justify='left')
+affichage = Label(screen, textvariable=aff, width=40, justify='left')
 
 ListeButton = [buttonQuitt, butonClear, buton0, buton1, buton2, buton3, buton4, buton5, buton6, buton7, buton8, buton9, butonPlus, butonMoins, butonFois, buttonPG, buttonPD, butonEqual]
 
 """--VI/ Définition de la position des boutons--"""
 
 """---A) clavier des chiffres---"""
-affichage.grid(row=2, column=0, padx=0, pady=5, ipady=5, columnspan=4)
+affichage.grid(row=2, column=0, padx=0, pady=5, ipady=5, columnspan=5)
 buton9.grid(row=3, column=2, ipadx=20, padx=0, ipady=10, sticky=W+N+E)
 buton8.grid(row=3, column=1, ipadx=20, padx=0, ipady=10, sticky=W+N+E)
 buton7.grid(row=3, column=0, ipadx=20, padx=0, ipady=10, sticky=W+N+E)
@@ -228,22 +246,22 @@ buton4.grid(row=4, column=0, ipadx=20, padx=0, ipady=10, sticky=W+N+E)
 buton3.grid(row=5, column=2, ipadx=20, padx=0, ipady=10, sticky=W+N+E)
 buton2.grid(row=5, column=1, ipadx=20, padx=0, ipady=10, sticky=W+N+E)
 buton1.grid(row=5, column=0, ipadx=20, padx=0, ipady=10, sticky=W+N+E)
-butonEqual.grid(row=7, column=3, ipadx=20, padx=0, ipady=5, sticky=W+N+E, columnspan=1, rowspan=1)
+butonEqual.grid(row=7, column=2, ipadx=60, padx=0, ipady=5, sticky=W+N+E, columnspan=3, rowspan=1)
 buttonDel.grid(row=6, column=2, ipadx=20, padx=0, ipady=10, sticky=W+N+E, columnspan=1, rowspan=1)
 buton0.grid(row=6, column=1, ipadx=20, padx=0, ipady=10, sticky=W+N+E, columnspan=1)
-butonClear.grid(row=7, column=2, ipadx=20, padx=0, ipady=5, sticky=W+N+E)
+butonClear.grid(row=7, column=1, ipadx=20, padx=0, ipady=5, sticky=W+N+E)
 
 
 """---B) Clavier des Opérateurs---"""
 butonPlus.grid(row=3, column=3, ipadx=20, padx=0, ipady=10, sticky=W+N+E)
-butonMoins.grid(row=4, column=3, ipadx=20, padx=0, ipady=10, sticky=W+N+E)
-butonFois.grid(row=5, column=3, ipadx=19, padx=0, ipady=10, sticky=W+N+E)
-buttonPD.grid(row=7, column=1, ipadx=20, padx=0, ipady=5, sticky=W+N+E)
-buttonPG.grid(row=7, column=0, ipadx=20, padx=0, ipady=5, sticky=W+N+E)
+butonMoins.grid(row=3, column=4, ipadx=20, padx=0, ipady=10, sticky=W+N+E)
+butonFois.grid(row=4, column=3, ipadx=19, padx=0, ipady=10, sticky=W+N+E)
+buttonPD.grid(row=6, column=4, ipadx=20, padx=0, ipady=10, sticky=W+N+E)
+buttonPG.grid(row=6, column=3, ipadx=20, padx=0, ipady=10, sticky=W+N+E)
 buttonVirgule.grid(row=6, column=0, ipadx=20, padx=0, ipady=10, sticky=W+N+E, columnspan=1, rowspan=1)
-buttonDivide.grid(row=6, column=3, ipadx=20, padx=0, ipady=10, sticky=W+N+E, columnspan=1, rowspan=1)
-
-
+buttonDivide.grid(row=4, column=4, ipadx=20, padx=0, ipady=10, sticky=W+N+E, columnspan=1, rowspan=1)
+buttonPuiss.grid(row=5, column=3, ipadx=20, padx=0, ipady=10, sticky=W+N+E)
+buttonRacine.grid(row=5, column=4, ipadx=20, padx=0, ipady=10, sticky=W+N+E)
 """--V/ Pouvoir utilisé les touche du clavier pour taper le calcul--"""
 
 """---A) definition des fonctions"""
@@ -391,6 +409,14 @@ def clavierEqual(event):
     aff.set(str(b.calcul.calcul) + " = " + txt)
 
 
+def clavierPuissance(event):
+    """Ajoute ^ a la variable txt quand la touche "^" est pressée"""
+    global txt
+    txt += "^"
+    global aff
+    aff.set(txt)
+
+
 """---B) Definition des touches"""
 
 screen.bind("0", clavier0)
@@ -410,6 +436,8 @@ screen.bind("/", clavierDivide)
 screen.bind(".", clavierVirgule)
 screen.bind("<Return>", clavierEqual)
 screen.bind("<BackSpace>", clavier_del_last_elem)
+screen.bind("<ccedilla>", clavierPuissance)
+
 
 screen.mainloop()
 

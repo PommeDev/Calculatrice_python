@@ -22,7 +22,7 @@ def isole_parenthese(pO: Calcul_Decimal):
     txt, txt2 = "", ""
     for c in a.entre_parentheses:
         txt += str(c)
-    Pr = ResultBis(txt)
+    Pr = Result(txt)
     Pr.Result()
     for Membre_c in range(len(a.calcul)):
         txt2 += a.calcul[Membre_c]

@@ -1,5 +1,6 @@
 from ResultatDecimal import *
 
+
 class Calcul_Decimal:
     """Class du calcul que pour un calcul sur des nombres"""
 
@@ -7,9 +8,9 @@ class Calcul_Decimal:
         for n in calcul:
             assert n == "1" or n == "2" or n == "3" or n == "4" or n == "5" or n == "6" or n == "7" or n == "8" \
                    or n == "9" or n == "0" or n == "+" or n == "-" or n == "*" or n == "/" \
-                   or n == '(' or n == ')' or ",", "Le calcul ne contient pas que des chiffres et des opérateurs "
+                   or n == '(' or n == ')' or n == "," or n == "^" or n == "√", "Le calcul ne contient pas que des chiffres et des opérateurs "
 
-        assert est_un_chiffre(calcul[-1]) or calcul[-1] == ')', "Le  dernier nombre est un opérateur"
+        assert (est_un_chiffre(calcul[-1]) or calcul[-1] == ')') and (est_un_chiffre(calcul[0]) or calcul[0] == "("), "Le  dernier nombre est un opérateur ou le premier"
 
         self.chiffre = []
         self.operator = []
